@@ -11,6 +11,8 @@ cap.set(4, 720)
 model = YOLO("../Yolo-Weights/yolov8n.pt")
 
 
+
+
 while True:
     success, img = cap.read()
     results = model(img, stream=True)
@@ -27,6 +29,7 @@ while True:
 
             conf = math.ceil((box.conf[0]*100))/100
             print(conf)
+            cvzone.putTextRect(img, f'{conf}', (max(0, x1), max(35, y1)))
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
